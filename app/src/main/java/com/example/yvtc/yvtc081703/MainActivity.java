@@ -1,6 +1,7 @@
 package com.example.yvtc.yvtc081703;
 
 import android.Manifest;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Environment;
 import android.support.annotation.NonNull;
@@ -9,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -63,8 +65,6 @@ public class MainActivity extends AppCompatActivity {
         {
             writeFile();
         }
-
-
     }
 
     @Override
@@ -96,5 +96,19 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void clickSave(View v)
+    {
+        SharedPreferences sp = getSharedPreferences("MYDATA", MODE_PRIVATE);
+        SharedPreferences.Editor ed = sp.edit();
+        ed.putString("DATA", "123123");
+        ed.commit();
+    }
+    public void clickRead(View v)
+    {
+        SharedPreferences sp = getSharedPreferences("MYDATA", MODE_PRIVATE);
+        String str = sp.getString("DATA", "000");
+        Toast.makeText(MainActivity.this, str, Toast.LENGTH_SHORT).show();
     }
 }
