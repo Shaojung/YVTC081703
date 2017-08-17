@@ -127,4 +127,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(it);
         return super.onOptionsItemSelected(item);
     }
+    public void clickR2(View v)
+    {
+        SharedPreferences sp = getSharedPreferences(getPackageName() + "_preferences", MODE_PRIVATE);
+        String str = sp.getString("example_text", "000");
+        Toast.makeText(MainActivity.this, str, Toast.LENGTH_SHORT).show();
+    }
 }
