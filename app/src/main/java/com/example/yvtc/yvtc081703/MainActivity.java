@@ -17,7 +17,20 @@ public class MainActivity extends AppCompatActivity {
     }
     public void click1(View v)
     {
+
         File f = new File(getFilesDir().getAbsolutePath() + File.separator + "test1.txt");
+        try {
+            FileWriter fw = new FileWriter(f);
+            fw.write("Hello World");
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+    public void click2(View v)
+    {
+        File f = new File(getExternalFilesDir("Data") + File.separator + "test2.txt");
         try {
             FileWriter fw = new FileWriter(f);
             fw.write("Hello World");
